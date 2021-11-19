@@ -15,9 +15,9 @@ public interface IDAO<T> {
 	
 	int add(T p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException;
 	
-	int update(T p);
+	int update(T p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException;
 	
-	int remove(int id);
+	int remove(int id)throws FileNotFoundException, ClassNotFoundException, IOException, SQLException;
 	
 	
 }

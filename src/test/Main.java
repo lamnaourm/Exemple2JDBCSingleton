@@ -28,8 +28,10 @@ public class Main {
 		
 		System.out.println(dao.getOne(2));
 		
-		Produit p1 = new Produit(1,"TESTDAT","FAM",11111,4444);
-		dao.add(p1);
+		Produit p1 = new Produit(3,"TESTUDPATE","FAMUPDATE",188,4554);
+		dao.update(p1);
+		
+		dao.remove(3);
 	}
 
 }

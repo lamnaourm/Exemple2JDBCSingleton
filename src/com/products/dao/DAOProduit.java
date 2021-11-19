@@ -60,20 +60,24 @@ public class DAOProduit implements IDAO<Produit>{
 	@Override
 	public int add(Produit p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		String requete = "INSERT INTO PRODUIT VALUES (null,'"+p.getNom()+"','"+p.getFamille()+"',"+p.getPrix_achat()+","+p.getPrix_vente()+")";
-		System.out.println(requete);
 		return ConnectionUtils.executeUpdate(requete);
 	}
 
 	@Override
-	public int update(Produit p) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Produit p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
+		String requete = "UPDATE PRODUIT SET "
+				+ "nom = '"+p.getNom()+"',"
+				+ "famille = '"+p.getFamille()+"',"
+				+ "prix_achat = " + p.getPrix_achat() + ","
+				+ "prix_vente = " + p.getPrix_vente() + ""
+			+ "WHERE id = " + p.getId();
+		return ConnectionUtils.executeUpdate(requete);
 	}
 
 	@Override
-	public int remove(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int remove(int id) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
+		String requete = "DELETE FROM PRODUIT WHERE ID = " + id;
+		return ConnectionUtils.executeUpdate(requete);
 	}
 
 }
