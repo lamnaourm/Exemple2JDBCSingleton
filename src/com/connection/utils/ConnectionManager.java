@@ -16,7 +16,7 @@ public class ConnectionManager {
 		
 	}
 	
-	public static Connection getInstance() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
+	public static synchronized Connection getInstance() throws FileNotFoundException, IOException, ClassNotFoundException, SQLException {
 		if(conn==null) {
 			Properties p = new Properties();
 			p.load(new FileInputStream("src/com/connection/utils/db.properties"));
