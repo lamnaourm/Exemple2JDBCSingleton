@@ -6,22 +6,27 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.connection.utils.ConnectionManager;
+import com.products.dao.DAOProduit;
+import com.products.dao.IDAO;
+import com.produit.model.Produit;
 
 public class Main {
 
 	public static void main(String[] args) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		// TODO Auto-generated method stub
 
-		Connection c = ConnectionManager.getInstance();
+		IDAO dao = new DAOProduit();
 		
-		Statement st = c.createStatement();
+		List<Produit> p = dao.getAll();
 		
-		ResultSet r = st.executeQuery("SELECT * FROM PRODUIT");
+		for(Produit pp : p)
+			System.out.println(pp);
 		
-		while(r.next()) {
-			System.out.println(r.getInt(1) + " - " + r.getString(2));
-		}
+		System.out.println(dao.getOne(2));
 		
 	}
 
