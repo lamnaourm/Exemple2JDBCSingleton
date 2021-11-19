@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.connection.utils.ConnectionManager;
+import com.connection.utils.ConnectionUtils;
 import com.produit.model.Produit;
 
 public class DAOProduit implements IDAO<Produit>{
@@ -19,9 +20,7 @@ public class DAOProduit implements IDAO<Produit>{
 	public List<Produit> getAll() throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
 		ArrayList<Produit> prds = new ArrayList<>();
 		
-		Connection c = ConnectionManager.getInstance();
-		Statement st = c.createStatement();
-		ResultSet r = st.executeQuery("SELECT * FROM PRODUIT");
+		ResultSet r = ConnectionUtils.executeQuery("SELECT * FROM PRODUIT");
 		
 		while(r.next()) {
 			Produit p = new Produit();
@@ -40,10 +39,8 @@ public class DAOProduit implements IDAO<Produit>{
 
 	@Override
 	public Produit getOne(int id) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
-		Connection c = ConnectionManager.getInstance();
-		PreparedStatement st = c.prepareStatement("SELECT * FROM PRODUIT WHERE ID=?");
-		st.setInt(1, id);
-		ResultSet r = st.executeQuery();
+		
+		ResultSet r = ConnectionUtils.executeQuery("SELECT * FROM PRODUIT WHERE ID = " + id);
 		
 		if(r.next()) {
 			Produit p = new Produit();
@@ -61,9 +58,10 @@ public class DAOProduit implements IDAO<Produit>{
 	}
 
 	@Override
-	public int add(Produit p) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int add(Produit p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException {
+		String requete = "INSERT INTO PRODUIT VALUES (null,'"+p.getNom()+"','"+p.getFamille()+"',"+p.getPrix_achat()+","+p.getPrix_vente()+")";
+		System.out.println(requete);
+		return ConnectionUtils.executeUpdate(requete);
 	}
 
 	@Override

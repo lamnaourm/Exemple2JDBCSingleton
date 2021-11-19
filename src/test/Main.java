@@ -28,6 +28,8 @@ public class Main {
 		
 		System.out.println(dao.getOne(2));
 		
+		Produit p1 = new Produit(1,"TESTDAT","FAM",11111,4444);
+		dao.add(p1);
 	}
 
 }

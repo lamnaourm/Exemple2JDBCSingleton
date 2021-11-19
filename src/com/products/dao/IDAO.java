@@ -13,7 +13,7 @@ public interface IDAO<T> {
 	
 	T getOne(int id) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException;
 	
-	int add(T p);
+	int add(T p) throws FileNotFoundException, ClassNotFoundException, IOException, SQLException;
 	
 	int update(T p);
 	
